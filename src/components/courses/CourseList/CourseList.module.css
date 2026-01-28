@@ -1,0 +1,32 @@
+/* Контейнер, який тримає заголовок і сітку */
+.container {
+  width: 100%;
+  padding: 20px;
+  
+display: flex;
+flex-wrap: wrap;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+/* Сама сітка карток */
+.grid {
+  display: grid;
+  /* Робимо 2 або 3 колонки залежно від ширини */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Стан завантаження та помилки, щоб не ламали верстку */
+.loading, .error, .empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px;
+  color: #666;
+}

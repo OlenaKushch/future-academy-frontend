@@ -1,0 +1,51 @@
+.card {
+  /* Прибираємо жорсткий білий фон, щоб працював колір з пропсів */
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.courseImg {
+    width: 250px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* Стиль для кнопки всередині картки, якщо вона є у тебе в дизайні */
+.buttonGroup {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.detailsBtn {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border: 1px solid #4a90e2;
+  color: #4a90e2;
+  border-radius: 12px;
+  text-decoration: none; /* Прибираємо підкреслення посилання */
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.enrollBtn {
+  margin-top: auto;
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}

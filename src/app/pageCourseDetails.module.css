@@ -1,0 +1,41 @@
+/* src/app/courses/[id]/CourseDetails.module.css */
+.container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #1a1a1a; /* Наш темний колір тексту */
+}
+
+.backLink {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.courseImage {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+.priceTag {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2ecc71; /* Зелений для ціни */
+}
