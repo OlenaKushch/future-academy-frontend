@@ -1,15 +1,22 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_API_URL;
+
+if (!baseURL) {
+    throw new Error("VITE_API_URL is not set");
+}
+
 export const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL,
 });
 
-export const createApplication = async (data: {
-    userName: string;
+export const createLead = async (data: {
+    name: string;
     phone: string;
-    comment?: string;
-    courseId: number;
+    email: string;
+    message?: string;
+    courseId: string;
 }) => {
-    const response = await api.post('/applications', data);
+    const response = await api.post('/api/v1/leads', data);
     return response.data;
 };

@@ -5,11 +5,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { api } from "../../../api/api";
+import { createLead } from "../../../api/api";
 
 interface EnrollModalForm {
 name: string;
 phone: string;
+email: string;
 comment?: string | null;
 }
 
@@ -22,7 +23,11 @@ const schema: yup.ObjectSchema<EnrollModalForm> = yup
     phone: yup
       .string()
       .required("Номер телефону є обовʼязковим")
-      .matches(/^\+?\d{10,13}$/, "Невірний формат номера телефону"),
+      .matches(/^\+380\d{9}$/, "Номер має бути у форматі +380XXXXXXXXX"),
+    email: yup
+      .string()
+      .required("Email є обовʼязковим")
+      .email("Невірний формат email"),
     comment: yup
       .string()
       .notRequired()
@@ -34,7 +39,7 @@ const schema: yup.ObjectSchema<EnrollModalForm> = yup
 type FormData = yup.InferType<typeof schema>;
 
 export const EnrollModal = () => {
-  const { isOpen, courseTitle, courseId, closeModal } = useModalStore();
+  const { isOpen, courseTitle, courseUuid, closeModal } = useModalStore();
 
   const {
     register,
@@ -47,15 +52,19 @@ export const EnrollModal = () => {
 
   const mutation = useMutation({
     mutationFn: async (data: EnrollModalForm) => {
-      const applicationData = {
-        userName: data.name,
+      if (!courseUuid) {
+        throw new Error("Course UUID is missing");
+      }
+
+      const leadData = {
+        name: data.name,
         phone: data.phone,
-        comment: data.comment || undefined,
-        courseId: courseId,
+        email: data.email,
+        message: data.comment || undefined,
+        courseId: courseUuid,
       };
 
-      const response = await api.post('/applications', applicationData);
-      return response.data;
+      return createLead(leadData);
     },
     onSuccess: () => {
       toast.success("Заявка успішно відправлена!");
@@ -98,6 +107,16 @@ export const EnrollModal = () => {
               className={errors.phone ? styles.inputError : ''}
             />
             {errors.phone && <span className={styles.errorText}>{errors.phone.message}</span>}
+          </label>
+
+          <label className={styles.field}>
+            Email
+            <input
+              {...register("email")}
+              placeholder="you@example.com"
+              className={errors.email ? styles.inputError : ""}
+            />
+            {errors.email && <span className={styles.errorText}>{errors.email.message}</span>}
           </label>
 
           <label className={styles.field}>

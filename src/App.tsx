@@ -19,18 +19,23 @@ function App() {
         </aside>
         <main className={styles.mainContent}>
           <Routes>
-            <Route path="/" element={<CourseDetailsPage />} />
+            <Route
+              path="/"
+              element={
+                <>
+                  <header className={styles.header}>
+                    <h1>Вітаємо у Future Academy!</h1>
+                    <p>Оберіть свій шлях розвитку за допомогою нашої платформи.</p>
+                  </header>
+
+                  <section className={styles.coursesSection}>
+                    <CourseList />
+                  </section>
+                </>
+              }
+            />
             <Route path="/courses/:id" element={<CourseDetailsPage />} />
           </Routes>
-          <header className={styles.header}>
-            <h1>Вітаємо у Future Academy!</h1>
-            <p>Оберіть свій шлях розвитку за допомогою нашої платформи.</p>
-          </header>
-
-          {/* Сюди ми виводимо наш основний контент */}
-          <section className={styles.coursesSection}>
-            <CourseList />
-          </section>
         </main>
         <EnrollModal /> {/* Вона просто лежить тут і не заважає */}
         <Toaster position="top-right" reverseOrder={false} />
