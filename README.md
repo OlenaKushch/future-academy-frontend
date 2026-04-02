@@ -1,5 +1,20 @@
 # React + TypeScript + Vite
 
+## Deploy to GitHub Pages
+
+This project is configured to deploy to GitHub Pages under:
+
+https://olenakushch.github.io/future-academy-frontend/
+
+Run:
+
+- npm run deploy
+
+Notes:
+
+- The Vite `base` path is set to `/future-academy-frontend/` for production builds.
+- GitHub Pages must publish from the `gh-pages` branch created by the deploy script.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

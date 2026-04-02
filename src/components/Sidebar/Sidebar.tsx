@@ -1,10 +1,6 @@
 import styles from "./Sidebar.module.css";
 
-interface SidebarProps {
-  user?: { name: string; avatar: string } | null;
-}
-
-export const Sidebar = ({ user }: SidebarProps) => {
+export const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>FUTURE ACADEMY</div>
@@ -17,19 +13,7 @@ export const Sidebar = ({ user }: SidebarProps) => {
         </ul>
       </nav>
       <div className={styles.sidebarFooter}>
-        {user ? (
-          //authorised
-          <div className={styles.userProfile}>
-            <img src={user.avatar} alt="Avatar" className={styles.avatar} />
-            <div className={styles.userInfo}>
-              <span className={styles.userName}>{user.name}</span>
-              <span className={styles.logout}>Вийти</span>
-            </div>
-          </div>
-        ) : (
-          //unauthorised
-          <button className={styles.loginBtn}>Увійти</button>
-        )}
+        <span className={styles.footerText}>Навчайтесь у власному темпі</span>
       </div>
     </div>
   );

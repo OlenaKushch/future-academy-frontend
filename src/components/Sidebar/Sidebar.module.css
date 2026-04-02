@@ -34,30 +34,7 @@
     border-top: 1px solid #f0f0f0;
 }
 
-.userProfile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* Робить фото круглим */
-    object-fit: cover;
-}
-
-.userInfo {
-    display: flex;
-    flex-direction: column;
-}
-
-.userName {
-    font-weight: 600;
-}
-
-.logout {
-    font-size: 12px;
-    color: #ff4d4f;
-    cursor: pointer;
+.footerText {
+    font-size: 13px;
+    color: #737373;
 }
