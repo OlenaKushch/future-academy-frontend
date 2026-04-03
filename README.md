@@ -12,7 +12,8 @@ Run:
 
 Notes:
 
-- The Vite `base` path is set to `/future-academy-frontend/` for production builds.
+- The default build uses root base `/` (works for Vercel and other root-hosted deployments).
+- GitHub Pages deploy uses `npm run build:gh-pages`, which sets Vite mode `gh-pages` and base `/future-academy-frontend/`.
 - GitHub Pages must publish from the `gh-pages` branch created by the deploy script.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
