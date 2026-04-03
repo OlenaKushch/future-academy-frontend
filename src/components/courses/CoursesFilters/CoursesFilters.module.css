@@ -1,38 +1,82 @@
 .filterWrapper {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 16px;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 0;
 	margin-bottom: 20px;
-}
-
-.filterGroup {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	flex-wrap: wrap;
-}
-
-.filterGroup span {
-	font-weight: 600;
-	color: #444;
-}
-
-.filterGroup button {
-	border: 1px solid #dfe3e8;
 	background: #fff;
-	color: #333;
-	border-radius: 999px;
-	padding: 6px 12px;
-	transition: all 0.2s ease;
+	border-bottom: 1px solid #d9d9d9;
 }
 
-.filterGroup button:hover {
-	border-color: #4a90e2;
-	color: #4a90e2;
+
+.filterCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 12px 6px 10px;
+	background: transparent;
+	border: 0;
+	position: relative;
+	color: #0f1442;
+}
+
+.icon {
+	width: 42px;
+	height: 42px;
+	object-fit: contain;
+}
+
+.title {
+	font-size: 28px;
+	line-height: 1;
+	font-weight: 800;
+	color: #101010;
+}
+
+.label {
+	font-size: 22px;
+	line-height: 1.05;
+	color: #707070;
 }
 
 .active {
-	background: #4a90e2;
-	color: #fff !important;
-	border-color: #4a90e2 !important;
+	color: #101010;
+}
+
+.active::after {
+	content: "";
+	position: absolute;
+	left: 10%;
+	right: 10%;
+	bottom: -1px;
+	height: 4px;
+	border-radius: 2px;
+	background: linear-gradient(90deg, #f7a12f 0%, #54d1ff 100%);
+}
+
+@media (max-width: 767px) {
+	.icon {
+		width: 34px;
+		height: 34px;
+	}
+
+	.title {
+		font-size: 15px;
+	}
+
+	.label {
+		font-size: 12px;
+	}
+
+	.filterCard {
+		padding: 10px 4px 8px;
+		gap: 4px;
+	}
+
+	.active::after {
+		height: 3px;
+		left: 8%;
+		right: 8%;
+	}
 }
