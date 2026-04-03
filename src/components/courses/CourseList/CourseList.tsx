@@ -33,12 +33,31 @@ const [age, setAge] = useState<CourseFilterAge>(ALL_FILTER_OPTION);
 if (isLoading) return <div className={styles.loader}>Loading courses...</div>;
 if (error) return <div className={styles.error}>Error loading courses.</div>;
 
-const filteredCourses = courses?.filter(course => {
+const normalizeAgeRange = (value: string) => value.replace(/[\s—–]/g, "-").replace(/-+/g, "-");
+
+const matchesSelectedAge = (course: Course, selectedAge: CourseFilterAge) => {
+  if (selectedAge === ALL_FILTER_OPTION) return true;
+
+  const [selectedMin, selectedMax] = selectedAge.split("-").map(Number);
+  if (Number.isNaN(selectedMin) || Number.isNaN(selectedMax)) return true;
+
+  if (typeof course.minAge === "number" && typeof course.maxAge === "number") {
+    return course.minAge === selectedMin && course.maxAge === selectedMax;
+  }
+
+  if (course.ageRange) {
+    return normalizeAgeRange(course.ageRange) === `${selectedMin}-${selectedMax}`;
+  }
+
+  return false;
+};
+
+const filteredCourses = courses?.filter((course) => {
   const categoryMatch = category === ALL_FILTER_OPTION || course.type === category;
   const levelMatch = level === ALL_FILTER_OPTION || course.level === level;
-  const ageMatch = age === ALL_FILTER_OPTION || course.ageRange === age;
+  const ageMatch = matchesSelectedAge(course, age);
 
-    return categoryMatch && levelMatch && ageMatch;
+  return categoryMatch && levelMatch && ageMatch;
 });
 
     return (

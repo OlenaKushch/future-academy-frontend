@@ -1,8 +1,26 @@
 /* App.module.css */
 
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.mobileHero {
+  width: 100%;
+}
+
+.mobileHero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .layout {
   display: grid;
-  /* Sidebar займає 280px, а контент — все інше */
   grid-template-columns: 280px 1fr;
   min-height: 100vh;
   background-color: #f8f9fa; /* Світло-сірий фон для всього додатка */
@@ -19,7 +37,9 @@
 }
 
 .mainContent {
-  padding: 40px;
+  --content-padding: 20px;
+  width: 100%;
+  padding: var(--content-padding);
   overflow-y: auto;
 }
 
@@ -39,26 +59,87 @@
   color: #6c757d;
 }
 
+.aboutSection {
+  width: calc(100% + (var(--content-padding) * 2));
+  margin-left: calc(var(--content-padding) * -1);
+  margin-right: calc(var(--content-padding) * -1);
+  margin-bottom: 28px;
+}
+
 /* Секція для карток курсів */
 .coursesSection {
   width: 100%;
 }
 
-/* Адаптивність: якщо екран менше 768px (планшети/телефони) */
-@media (max-width: 768px) {
+/* Мобільна версія: 320px - 767px */
+@media (max-width: 767px) {
+  .appContainer {
+    max-width: 320px;
+  }
+
   .layout {
-    grid-template-columns: 1fr; /* Sidebar зникає або стає зверху */
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
   }
 
   .sidebarWrapper {
-    display: none; /* Зазвичай на мобільних Sidebar ховають під "бургер-меню" */
+    display: none; /* Сайдбар прихований на мобільці */
   }
 
   .mainContent {
-    padding: 20px;
+    --content-padding: 20px;
   }
 
   .header h1 {
     font-size: 1.8rem;
+  }
+}
+
+/* Планшетна версія: 768px - 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .appContainer {
+    max-width: 768px;
+  }
+
+  .mobileHero {
+    display: none;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarWrapper {
+    display: block;
+  }
+
+  .mainContent {
+    --content-padding: 30px;
+  }
+}
+
+/* Десктопна версія: 1200px і більше */
+@media (min-width: 1200px) {
+  .appContainer {
+    max-width: 1200px;
+  }
+
+  .mobileHero {
+    display: none;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+  }
+
+  .sidebarWrapper {
+    display: block;
+  }
+
+  .mainContent {
+    --content-padding: 40px;
   }
 }

@@ -1,0 +1,115 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 0 16px;
+  background-color: #00093c;
+  border-bottom: 1px solid #eaeaea;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Hide header on tablet and desktop (768px and above) */
+@media (min-width: 768px) {
+  .header {
+    display: none;
+  }
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+/* Burger Menu Button */
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.burgerLine {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.burger.active .burgerLine:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.burger.active .burgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active .burgerLine:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
+}
+
+/* Logo */
+
+
+/* Mobile Menu */
+.mobileMenu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease;
+}
+
+.mobileMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobileMenu li {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobileMenu a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.mobileMenu a:hover {
+  background-color: #f5f5f5;
+}
+
+.mobileMenu li:last-child {
+  border-bottom: none;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

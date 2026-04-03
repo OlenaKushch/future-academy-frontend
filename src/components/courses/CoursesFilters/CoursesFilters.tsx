@@ -1,8 +1,6 @@
 import styles from './CoursesFilters.module.css';
 import {
     COURSE_FILTER_AGES,
-    COURSE_FILTER_CATEGORIES,
-    COURSE_FILTER_LEVELS,
     type CourseFilterAge,
     type CourseFilterCategory,
     type CourseFilterLevel,
@@ -24,45 +22,53 @@ export const CoursesFilters = ({
     setLevel,
     activeAge,
     setAge,
-} : FilterProps)=> {
+}: FilterProps) => {
+    const ageCards: Array<{
+        value: CourseFilterAge;
+        title: string;
+        label: string;
+        icon: string;
+    }> = [
+        {
+            value: COURSE_FILTER_AGES[1],
+            title: 'Діти',
+            label: '8 — 14 лет',
+            icon: '/children.svg',
+        },
+        {
+            value: COURSE_FILTER_AGES[2],
+            title: 'Підлітки',
+            label: '14 — 18 лет',
+            icon: '/teens.svg',
+        },
+        {
+            value: COURSE_FILTER_AGES[3],
+            title: 'Дорослі',
+            label: '18 — ∞',
+            icon: '/adult.svg',
+        },
+    ];
+
+    void activeCategory;
+    void setCategory;
+    void activeLevel;
+    void setLevel;
+
   return (
-    <div className={styles.filterWrapper}>
-        <div className={styles.filterGroup}>
-            <span>Напрямок:</span>
-            {COURSE_FILTER_CATEGORIES.map((cat) => (
+        <div className={styles.filterWrapper}>
+            {ageCards.map((item) => (
                 <button
-                    key={cat}
-                    className={activeCategory === cat ? styles.active : ''}
-                    onClick={() => setCategory(cat)}
+                    key={item.value}
+                    className={`${styles.filterCard} ${activeAge === item.value ? styles.active : ''}`}
+                    onClick={() => setAge(item.value)}
+                    type="button"
+                    aria-pressed={activeAge === item.value}
                 >
-                    {cat}
+                    <img src={item.icon} alt="" aria-hidden="true" className={styles.icon} />
+                    <span className={styles.title}>{item.title}</span>
+                    <span className={styles.label}>{item.label}</span>
                 </button>
             ))}
-        </div>
-        <div className={styles.filterGroup}>
-            <span>Рівень:</span>
-            {COURSE_FILTER_LEVELS.map(lvl => (
-                <button
-                    key={lvl}
-                    className={activeLevel === lvl ? styles.active : ''}
-                    onClick={() => setLevel(lvl)}
-                >
-                    {lvl}
-                </button>
-            ))}
-        </div>
-        <div className={styles.filterGroup}>
-            <span>Вік:</span>
-            {COURSE_FILTER_AGES.map((age) => (
-                <button
-                    key={age}
-                    className={activeAge === age ? styles.active : ''}
-                    onClick={() => setAge(age)}
-                >
-                    {age}
-                </button>
-            ))}
-        </div>
     </div>
   );
 };
